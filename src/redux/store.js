@@ -4,7 +4,7 @@ const rootReducer = combineReducers({
 
 });
 
-const setupStore = configureStore({
+const setupStore =()=> configureStore({
     reducer: rootReducer
 });
 
