@@ -1,7 +1,9 @@
+import {Players} from "./components";
+
 const App=()=>{
   return (
       <div>
-          App
+          <Players/>
       </div>
   );
 };

@@ -1,10 +1,12 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
 
-const rootReducer = combineReducers({
+import {playerReducer} from "./slices";
 
+const rootReducer = combineReducers({
+    players: playerReducer
 });
 
-const setupStore =()=> configureStore({
+const setupStore = () => configureStore({
     reducer: rootReducer
 });
 
