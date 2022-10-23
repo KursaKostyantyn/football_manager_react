@@ -1,0 +1,52 @@
+.Wrap{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.clubsList{
+    width: 20%;
+    background: blanchedalmond;
+    height: 100%;
+}
+
+.InfoBlock{
+    width: 80%;
+    background: lightblue;
+}
+
+.clubFormWrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: green;
+    height: 100px;
+    width: 100%;
+}
+
+.NameclubForm{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    height: 100%;
+}
+
+.clubForm{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 100%;
+}
+
+.Aboutclub{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.FullInfo{
+    display: flex;
+    flex-direction: row;
+}
