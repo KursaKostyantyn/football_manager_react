@@ -1,34 +1,85 @@
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
-import {clubActions} from "../../redux";
-import css from './Club.module.css'
+import {clubActions, playerActions} from "../../redux";
+import {useEffect, useState} from "react";
 
-const ClubShortInformation = ({club}) => {
-    const {id, name} = club
+const ClubShortInformation = ({club, transfer, noButtons, deleteFromTransfer}) => {
+
+    const {clubForTransferFrom, clubForTransferTo} = useSelector(state => state.clubs);
+    const [addedFrom, setAddedFrom] = useState(false);
+    const [addedTo, setAddedTo] = useState(false);
+
+    useEffect(() => {
+        if (club === clubForTransferTo) {
+            setAddedTo(false)
+            setAddedFrom(true)
+        } else {
+            setAddedFrom(false)
+        }
+        if (club === clubForTransferFrom) {
+            setAddedFrom(false)
+            setAddedTo(true)
+        } else {
+            setAddedTo(false)
+        }
+    }, [clubForTransferFrom, clubForTransferTo, club])
 
     const dispatch = useDispatch();
 
+
+    const {id, name, city} = club
+
+    const clubDetails = async () => {
+        await dispatch(clubActions.setClubForRender(club))
+        await dispatch(playerActions.getAllPlayers())
+    }
+
+    const updateClub = () => {
+        dispatch(clubActions.setClubForUpdate(club))
+    }
+
+    const deleteClub = () => {
+        dispatch(clubActions.deleteClubById({id}))
+    }
+
+    const transferClubFrom = () => {
+        dispatch(clubActions.setClubForTransferFrom(club))
+    }
+
+
+    const transferClubTo = () => {
+        dispatch(clubActions.setClubForTransferTo(club))
+    }
+
+    const deleteFromTransferButton = () => {
+        if (club === clubForTransferFrom) {
+            dispatch(clubActions.setClubForTransferFrom(null))
+        }
+        if (club === clubForTransferTo) {
+            dispatch(clubActions.setClubForTransferTo(null))
+        }
+    }
+
     return (
-        <div className={css.Club}>
+        <div>
             <div>id: {id}</div>
             <div>name: {name}</div>
-            <button onClick={() => {
-                dispatch(clubActions.setClubForRender(club))
-            }}>
-                Details
-            </button>
+            <div>city: {city}</div>
 
-            <button onClick={()=>{
-             dispatch(clubActions.setClubForUpdate(club))
-            }}>Update</button>
+            {!transfer && !noButtons && <button onClick={clubDetails}> Details</button>}
 
-            <button onClick={() => {
-                dispatch(clubActions.deleteClubById({id}))
-            }}>
-                Delete
-            </button>
+            {!transfer && !noButtons && <button onClick={updateClub}>Update</button>}
 
+            {!transfer && !noButtons && <button onClick={deleteClub}> Delete</button>}
+
+            {transfer && !addedFrom && <button onClick={transferClubFrom}>transfer from</button>}
+
+            {transfer && !addedTo && <button onClick={transferClubTo}>transfer to</button>}
+            {deleteFromTransfer && <button onClick={deleteFromTransferButton}>delete from transfer</button>}
+            <hr/>
         </div>
+
+
     );
 };
 

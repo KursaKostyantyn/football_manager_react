@@ -1,62 +1,70 @@
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
 
-import css from './PlayerShortInformation.module.css'
 import {clubActions, playerActions} from "../../redux";
 
+const PlayerShortInformation = ({player, adding, noButtons, clubId, transfer, deleteFromTransfer}) => {
+    // const {clubForRender} = useSelector(state => state.clubs);
+    const {playerForTransfer} = useSelector(state => state.players);
+    const dispatch = useDispatch();
 
-const PlayerShortInformation = ({player, adding, noButtons, clubId}) => {
-    const {clubForRender} = useSelector(state => state.clubs);
     const {
         id,
         firstName,
         lastName,
     } = player
 
-    // const [clubId, setClubId] = useState(null);
 
-    useEffect(() => {
-        if (clubForRender !== null) {
-            // setClubId(clubForRender.id)
+    const playerDetails = () => {
+        dispatch(playerActions.setPlayerForRender(player));
+    }
+
+    const updatePlayer = () => {
+        dispatch(playerActions.setPlayerForUpdate(player))
+    }
+
+    const deletePlayer = () => {
+        dispatch(playerActions.deletePlayerById({id}))
+    }
+
+    const addPlayer = async () => {
+        await dispatch(clubActions.addPlayerToClubById(
+            {
+                id: clubId,
+                playerId: id
+            }
+        ))
+        await dispatch(playerActions.getAllPlayers())
+    }
+
+    const transferPlayer = () => {
+        dispatch(playerActions.setPlayerForTransfer(player))
+    }
+
+    const deleteFromTransferButton = () => {
+        if (player === playerForTransfer) {
+            dispatch(playerActions.setPlayerForTransfer(null))
         }
-    }, [clubForRender])
-
-    const dispatch = useDispatch();
-
+    }
 
     return (
-        <div className={css.Player}>
-            <div>{id} {firstName} {lastName}</div>
+        <div>
+            <div>id: {id}</div>
+            <div>firstName: {firstName}</div>
+            <div>lastName: {lastName}</div>
 
-            {!adding && !noButtons && <button onClick={() => {
-                dispatch(playerActions.setPlayerForRender(player));
-            }}>
-                details
-            </button>}
+            {!adding && !noButtons && <button onClick={playerDetails}> details </button>}
 
-            {!adding && !noButtons && <button onClick={() => {
-                dispatch(playerActions.setPlayerForUpdate(player))
-            }}>
-                update
-            </button>}
+            {!adding && !noButtons && <button onClick={updatePlayer}> update </button>}
 
-            {!adding && !noButtons && <button onClick={() => {
-                dispatch(playerActions.deletePlayerById({id}))
-            }}>
-                delete
-            </button>}
+            {!adding && !noButtons && <button onClick={deletePlayer}> delete </button>}
 
-            {adding && !noButtons && <button onClick={async () => {
-                console.log('clubId', clubId)
-                await dispatch(clubActions.addPlayerToClubById(
-                    {
-                        id: clubId,
-                        playerId: id
-                    }
-                ))
-                await dispatch(playerActions.getAllPlayers())
-            }
-            }>Add player</button>}
+            {adding && !noButtons && <button onClick={addPlayer}>Add player</button>}
+
+            {transfer && <button onClick={transferPlayer}>choose player for transfer</button>}
+
+            {deleteFromTransfer && <button onClick={deleteFromTransferButton}>delete from transfer</button>}
+            <hr/>
+
         </div>
     );
 };

@@ -3,7 +3,6 @@ import {useEffect, useState} from "react";
 
 import {PlayerShortInformation} from "../playerShortInformation";
 
-
 const FreePlayers = ({clubId}) => {
 
     const {players} = useSelector(state => state.players);

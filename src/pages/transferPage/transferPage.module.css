@@ -1,0 +1,25 @@
+.Wrap {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.TransferForm {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background: green;
+}
+
+.ClubsAndPlayers {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+
+    background: blanchedalmond;
+}
+
+.List{
+    margin: 10px;
+}

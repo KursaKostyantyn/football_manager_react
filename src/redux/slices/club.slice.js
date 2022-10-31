@@ -1,12 +1,15 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {clubService} from "../../services/club.service";
+
+import {clubService} from "../../services";
 
 
 const initialState = {
     clubs: [],
     errors: null,
     clubForUpdate: null,
-    clubForRender: null
+    clubForRender: null,
+    clubForTransferFrom: null,
+    clubForTransferTo: null
 }
 
 const getAllClubs = createAsyncThunk(
@@ -68,6 +71,18 @@ const updateClubById = createAsyncThunk(
     }
 );
 
+const playerTransfer = createAsyncThunk(
+    'clubSlice/playerTransfer',
+    async ({playerId, donorClubId, recipientClubId}, {rejectedWithValue}) => {
+        try {
+            const {data} = await clubService.playerTransfer(playerId, donorClubId, recipientClubId);
+            return data
+        } catch (e) {
+            return rejectedWithValue(e.response.data);
+        }
+    }
+);
+
 const clubSlice = createSlice({
     name: 'clubSlice',
     initialState,
@@ -77,6 +92,12 @@ const clubSlice = createSlice({
         },
         setClubForRender: (state, action) => {
             state.clubForRender = action.payload;
+        },
+        setClubForTransferFrom: (state, action) => {
+            state.clubForTransferFrom = action.payload;
+        },
+        setClubForTransferTo: (state, action) => {
+            state.clubForTransferTo = action.payload;
         }
     },
     extraReducers: (builder) => {
@@ -130,19 +151,31 @@ const clubSlice = createSlice({
                 state.errors = action.payload;
                 console.log(state.errors)
             })
+            .addCase(playerTransfer.fulfilled, (state, action) => {
+                state.errors = null;
+            })
+            .addCase(playerTransfer.rejected,(state, action) => {
+                state.errors = action.payload.msg;
+            })
     }
 });
 
-const {reducer: clubReducer, actions: {setClubForRender, setClubForUpdate}} = clubSlice;
+const {
+    reducer: clubReducer,
+    actions: {setClubForRender, setClubForUpdate, setClubForTransferFrom, setClubForTransferTo}
+} = clubSlice;
 
 const clubActions = {
     getAllClubs,
-    setClubForRender,
-    setClubForUpdate,
     deleteClubById,
     saveClub,
     updateClubById,
-    addPlayerToClubById
+    addPlayerToClubById,
+    playerTransfer,
+    setClubForTransferFrom,
+    setClubForRender,
+    setClubForUpdate,
+    setClubForTransferTo
 }
 
 export {

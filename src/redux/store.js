@@ -1,11 +1,12 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
 
-import {playerReducer} from "./slices";
-import {clubReducer} from "./slices";
+import {playerReducer, clubReducer, authReducer} from "./slices";
+
 
 const rootReducer = combineReducers({
     players: playerReducer,
-    clubs: clubReducer
+    clubs: clubReducer,
+    auth: authReducer
 });
 
 const setupStore = () => configureStore({

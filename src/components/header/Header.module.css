@@ -1,4 +1,21 @@
 .Header {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    background: aqua;
+}
+
+.HeaderName {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ButtonsDiv {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.Buttons {
+    margin: 5px;
 }

@@ -1,0 +1,12 @@
+.Wrap {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background: blue;
+}
+
+
+.Content{
+    display: flex;
+    justify-content: center;
+}

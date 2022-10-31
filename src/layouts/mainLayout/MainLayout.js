@@ -1,20 +1,26 @@
-import css from './MainLayout.module.css'
 import {Outlet} from "react-router-dom";
-import {Menu} from "../../components";
+import {useSelector} from "react-redux";
+
+import css from './MainLayout.module.css'
 import {Header} from "../../components/header";
 
+
 const MainLayout = () => {
+    const {errors} = useSelector(state => state.auth);
 
     return (
-        <div className={css.wrap}>
-            <div className={css.header}>
+        <div className={css.Wrap}>
+            <div>
                 <Header/>
             </div>
-            <div>
-                <Menu/>
-            </div>
-            <div className={css.content}>
-                <Outlet/>
+
+            <div className={css.Content}>
+                <div>
+                    <Outlet/>
+                </div>
+                <div>
+                    {errors && JSON.stringify(errors)}
+                </div>
             </div>
         </div>
     );

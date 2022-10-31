@@ -6,25 +6,32 @@ const PlayersPage = () => {
     return (
         <div className={css.Wrap}>
             <div className={css.PlayersList}>
-                Players list:
+                <h4> Players list:</h4>
                 <Players/>
             </div>
             <div className={css.InfoBlock}>
                 <div className={css.PlayerFormWrap}>
-                    <div className={css.NamePlayerForm}>Players Form </div>
-                   <div className={css.PlayerForm}> <PlayerForm/> </div>
+                    <div className={css.NamePlayerForm}><h4>Player form</h4></div>
+                    <div className={css.PlayerForm}><PlayerForm/></div>
                 </div>
                 <div>
-                    <div className={css.AboutPlayer}>
-                        Full info about player
-                    </div>
                     <div className={css.FullInfo}>
-                        <div>
-                            <img src={'https://static.wikia.nocookie.net/simpsons/images/6/65/Bart_Simpson.png'} alt={'some logo'}/>
+                        <div className={css.PhotoSection}>
+                            <div className={css.PhotoSectionHeader}>
+                                <h4>
+                                    Player's photo
+                                </h4>
+                            </div>
+                            <div>
+                                <img src={'https://static.wikia.nocookie.net/simpsons/images/6/65/Bart_Simpson.png'}
+                                     alt={'some logo'}/>
+                            </div>
+
                         </div>
-                       <div>
-                           <PlayerFullInformation/>
-                       </div>
+                        <div>
+                            <h4>Player details</h4>
+                            <PlayerFullInformation/>
+                        </div>
 
                     </div>
                 </div>

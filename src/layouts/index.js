@@ -1,1 +1,2 @@
-export * from './mainLayout/MainLayout';
+export * from './mainLayout/index';
+export * from './loggedInLayout/index'

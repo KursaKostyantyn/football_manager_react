@@ -30,16 +30,20 @@ const ClubForm = () => {
         }
     }
 
+    const resetForm = () => {
+        reset();
+    }
+
     return (
         <div>
-            <form onSubmit={handleSubmit(submit)}>
+            <form>
                 <input type='text' placeholder={'name'} {...register('name')}/>
                 <input type='number' placeholder={'account'} {...register('account')}/>
                 <input type='text' placeholder={'city'} {...register('city')}/>
                 <input type='text' placeholder={'country'} {...register('country')}/>
                 <input type='number' placeholder={'commission'} {...register('commission')}/>
-                <button>{clubForUpdate ? 'Update' : 'Save'}</button>
-
+                <button onClick={handleSubmit(submit)}>{clubForUpdate ? 'Update club' : 'Save club'}</button>
+                <button onClick={handleSubmit(resetForm)}>Reset form</button>
             </form>
         </div>
     );

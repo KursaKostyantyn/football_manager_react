@@ -7,6 +7,7 @@ const initialState = {
     errors: null,
     playerForRender: null,
     playerForUpdate: null,
+    playerForTransfer: null
 };
 
 const getAllPlayers = createAsyncThunk(
@@ -66,6 +67,9 @@ const playerSlice = createSlice({
         },
         setPlayerForRender: (state, action) => {
             state.playerForRender = action.payload;
+        },
+        setPlayerForTransfer: (state, action) => {
+            state.playerForTransfer = action.payload
         }
     },
     extraReducers: (builder) => {
@@ -110,7 +114,7 @@ const playerSlice = createSlice({
     }
 });
 
-const {reducer: playerReducer, actions: {setPlayerForUpdate, setPlayerForRender}} = playerSlice;
+const {reducer: playerReducer, actions: {setPlayerForUpdate, setPlayerForRender, setPlayerForTransfer}} = playerSlice;
 
 const playerActions = {
     getAllPlayers,
@@ -118,7 +122,8 @@ const playerActions = {
     updatePlayerById,
     savePlayer,
     deletePlayerById,
-    setPlayerForRender
+    setPlayerForRender,
+    setPlayerForTransfer
 }
 
 export {

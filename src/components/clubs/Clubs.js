@@ -4,7 +4,7 @@ import {useEffect} from "react";
 import {clubActions} from "../../redux";
 import {ClubShortInformation} from "../clubShortInformation";
 
-const Clubs = () => {
+const Clubs = ({transfer}) => {
     const {clubs} = useSelector(state => state.clubs);
 
     const dispatch = useDispatch();
@@ -15,7 +15,9 @@ const Clubs = () => {
 
     return (
         <div>
-            {clubs.map(club => <ClubShortInformation key={club.id} club={club}/>)}
+            {clubs.map(club => <ClubShortInformation key={club.id}
+                                                     club={club}
+                                                     transfer={transfer}/>)}
         </div>
     );
 };

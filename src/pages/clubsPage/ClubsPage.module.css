@@ -1,21 +1,21 @@
-.Wrap{
+.Wrap {
     display: flex;
     justify-content: center;
     width: 100%;
 }
 
-.clubsList{
+.ClubsList {
     width: 20%;
     background: blanchedalmond;
     height: 100%;
 }
 
-.InfoBlock{
+.InfoBlock {
     width: 80%;
     background: lightblue;
 }
 
-.clubFormWrap {
+.ClubFormWrap {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -24,7 +24,7 @@
     width: 100%;
 }
 
-.NameclubForm{
+.NameClubForm {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -32,7 +32,7 @@
     height: 100%;
 }
 
-.clubForm{
+.ClubForm {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -40,13 +40,17 @@
     height: 100%;
 }
 
-.Aboutclub{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.FullInfo{
+.FullInfo {
     display: flex;
     flex-direction: row;
+}
+
+.ClubLogo{
+    margin: 5px;
+}
+.ClubDetails{
+    margin: 5px;
+}
+.PlayerList{
+    margin: 5px;
 }
