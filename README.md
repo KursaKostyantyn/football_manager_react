@@ -1,3 +1,24 @@
+# footbal-manager  
+Frontend React JS,
+Backend part, Java https://github.com/KursaKostyantyn/football_manager_react.git  
+I mastered:
+* React JS  
+* REST style  
+* Authorization
+
+The system supports the following functionality:  
+- displaying a list of teams with basic information about each team (id, team name, city) with the ability to add/remove teams.  
+- displaying a list of all players with basic information about each player (id, name, Lastname) with the possibility of adding/removing players.  
+- display detailed information about the team and the list of its players.  
+- the possibility to edit team data.  
+- output of detailed information about the player.  
+- the possibility of editing data about the player.  
+- conducting a transfer operation.  
+
+Implemented user registration.  
+Implemented user logination.
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
