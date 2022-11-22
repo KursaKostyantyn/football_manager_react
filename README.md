@@ -1,4 +1,4 @@
-# footbal-manager  
+# footbal-manager React JS  
 Frontend React JS,
 Backend part, Java https://github.com/KursaKostyantyn/football_manager_react.git  
 I mastered:
