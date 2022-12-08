@@ -12,3 +12,6 @@ export * from './freePlayers/index';
 export * from './transferForm/index';
 export * from './registerForm/index';
 export * from './loginForm/index';
+export * from './activate/index';
+export * from './playerPhoto/index';
+export * from './clubPhoto/index';

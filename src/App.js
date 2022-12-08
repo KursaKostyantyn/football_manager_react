@@ -2,6 +2,7 @@ import {Navigate, Route, Routes} from "react-router-dom";
 
 import {LoggedInLayout, MainLayout} from "./layouts";
 import {ClubsPage, LoginPage, NotFoundPage, PlayersPage, RegisterPage, TransferPage} from "./pages";
+import {ActivatePage} from "./pages/activatePage";
 
 const App = () => {
     return (
@@ -10,6 +11,7 @@ const App = () => {
                 <Route index element={<Navigate to={'login'}/>}/>
                 <Route path={'register'} element={<RegisterPage/>}/>
                 <Route path={'login'} element={<LoginPage/>}/>
+                <Route path={'activate'} element={<ActivatePage/>}/>
             </Route>
 
             <Route path={'/'} element={<LoggedInLayout/>}>

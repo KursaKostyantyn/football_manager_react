@@ -1,4 +1,4 @@
-import {PlayerForm, PlayerFullInformation, Players} from "../../components";
+import {PlayerForm, PlayerFullInformation, PlayerPhoto, Players} from "../../components";
 import css from './PlayersPage.module.css'
 
 
@@ -16,17 +16,8 @@ const PlayersPage = () => {
                 </div>
                 <div>
                     <div className={css.FullInfo}>
-                        <div className={css.PhotoSection}>
-                            <div className={css.PhotoSectionHeader}>
-                                <h4>
-                                    Player's photo
-                                </h4>
-                            </div>
-                            <div>
-                                <img src={'https://static.wikia.nocookie.net/simpsons/images/6/65/Bart_Simpson.png'}
-                                     alt={'some logo'}/>
-                            </div>
-
+                        <div>
+                           <PlayerPhoto/>
                         </div>
                         <div>
                             <h4>Player details</h4>

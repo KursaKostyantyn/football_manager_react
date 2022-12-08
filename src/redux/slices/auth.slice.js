@@ -31,6 +31,17 @@ const loginUser = createAsyncThunk(
     }
 );
 
+const activateUser = createAsyncThunk(
+    'authSlice/activateUser',
+    async ({id},{rejectedWithValue})=>{
+        try {
+            const {data}= await authService.activate(id)
+        } catch (e){
+            return rejectedWithValue(e.response.data);
+        }
+    }
+);
+
 const authSlice = createSlice({
     name: 'authSlice',
     initialState,
@@ -48,6 +59,12 @@ const authSlice = createSlice({
                 state.isAuth = true;
                 authService.setAccessToken({access:action.payload})
             })
+            .addCase(activateUser.fulfilled, (state,action)=>{
+                state.errors=null;
+            })
+            .addCase(activateUser.rejected,(state, action) => {
+                state.errors =action.payload
+            })
             .addDefaultCase((state, action) => {
                 const [type] = action.type.split('/').splice(-1);
                 if (type === 'rejected') {
@@ -64,6 +81,7 @@ const {reducer: authReducer} = authSlice;
 const authActions = {
     registerUser,
     loginUser,
+    activateUser
 }
 
 export {

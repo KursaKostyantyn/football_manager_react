@@ -7,7 +7,8 @@ const initialState = {
     errors: null,
     playerForRender: null,
     playerForUpdate: null,
-    playerForTransfer: null
+    playerForTransfer: null,
+    playerPhoto: null
 };
 
 const getAllPlayers = createAsyncThunk(
@@ -57,6 +58,30 @@ const deletePlayerById = createAsyncThunk(
         }
     }
 );
+
+const savePlayerPhoto = createAsyncThunk(
+    'playersSlice/savePlayerPhoto',
+    async (formData,{rejectedWithValue})=>{
+        try {
+            const {data}= await playerService.savePlayerPhoto(formData);
+            return data;
+        } catch (e) {
+            return  rejectedWithValue(e.response.data);
+        }
+    }
+)
+
+const getPlayerPhoto = createAsyncThunk(
+    'playersSlice/getPlayerPhoto',
+    async (photo,{rejectedWithValue})=>{
+        try {
+            const {data}= await playerService.getPlayerPhoto(photo);
+            return data;
+        } catch (e) {
+            return  rejectedWithValue(e.response.data);
+        }
+    }
+)
 
 const playerSlice = createSlice({
     name: 'playerSlice',
@@ -111,6 +136,22 @@ const playerSlice = createSlice({
             .addCase(deletePlayerById.rejected, (state, action) => {
                 state.errors = action.payload;
             })
+            .addCase(savePlayerPhoto.fulfilled, (state, action) => {
+                state.errors = null;
+                const currentPlayer = state.players.find(value => value.id === action.payload.id);
+                Object.assign(currentPlayer, action.payload);
+                state.playerForRender = currentPlayer;
+            })
+            .addCase(savePlayerPhoto.rejected, (state, action) => {
+                state.errors = action.payload;
+            })
+            .addCase(getPlayerPhoto.fulfilled, (state, action) => {
+                state.errors = null;
+                state.playerPhoto= URL.createObjectURL(action.payload)
+            })
+            .addCase(getPlayerPhoto.rejected, (state, action) => {
+                state.errors = action.payload;
+            })
     }
 });
 
@@ -123,7 +164,9 @@ const playerActions = {
     savePlayer,
     deletePlayerById,
     setPlayerForRender,
-    setPlayerForTransfer
+    setPlayerForTransfer,
+    savePlayerPhoto,
+    getPlayerPhoto
 }
 
 export {

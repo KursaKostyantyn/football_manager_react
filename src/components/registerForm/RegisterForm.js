@@ -1,5 +1,5 @@
 import {useForm} from "react-hook-form";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
 
 import {authActions} from "../../redux";
@@ -27,19 +27,22 @@ const RegisterForm = () => {
                 })}/>
                 <input type='password' placeholder={'password'} {...register('password', {
                     required: true,
-                    minLength: 5,
+                    minLength: 4,
                     maxLength: 20
                 })}/>
-                <input type='email' placeholder={'email'} {...register('email')}/>
+                <input type='email' placeholder={'email'} {...register('email', {
+                    required: true
+                })}/>
                 <button>Register</button>
             </form>
             <div>
-                {errors.login && errors.login.type === "minLength" && <span>Login must be longer than 3 symbols</span>}
+                {errors.login && errors.login.type === "minLength" &&
+                    <span>Login must be equal or longer than 3 symbols</span>}
                 {errors.login && errors.login.type === "required" && <span>Login can't be empty</span>}
                 {errors.login && errors.login.type === "maxLength" &&
                     <span>Login must be shorter than 20 symbols</span>}
                 {errors.password && errors.password.type === "minLength" &&
-                    <span>Password must be longer than 5 symbols</span>}
+                    <span>Password must be equal or longer than 4 symbols</span>}
                 {errors.password && errors.password.type === "required" && <span>Password can't be empty</span>}
                 {errors.password && errors.password.type === "maxLength" &&
                     <span>Password must be shorter than 20 symbols</span>}

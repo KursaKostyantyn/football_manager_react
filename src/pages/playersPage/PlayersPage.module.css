@@ -51,13 +51,3 @@
     flex-direction: row;
 }
 
-.PhotoSection {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.PhotoSectionHeader {
-    display: flex;
-    justify-content: center;
-}

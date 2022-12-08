@@ -1,11 +1,11 @@
 import css from './ClubsPage.module.css'
-import {ClubForm, ClubFullInformation, Clubs, ListPlayersOfClub} from "../../components";
+import {ClubForm, ClubFullInformation, ClubPhoto, Clubs, ListPlayersOfClub} from "../../components";
 
 const ClubsPage = () => {
     return (
         <div className={css.Wrap}>
             <div className={css.ClubsList}>
-               <h4> Clubs list:</h4>
+                <h4> Clubs list:</h4>
                 <Clubs/>
             </div>
             <div className={css.InfoBlock}>
@@ -17,12 +17,7 @@ const ClubsPage = () => {
                 </div>
                 <div>
                     <div className={css.FullInfo}>
-                        <div className={css.ClubLogo}>
-                            <h4>Club logo</h4>
-                            <img width={100}
-                                 src={'https://st4.depositphotos.com/5532432/21655/v/1600/depositphotos_216554672-stock-illustration-football-club-logo-badge-represent.jpg'}
-                                 alt={'some logo'}/>
-                        </div>
+                        <div><ClubPhoto/></div>
                         <div className={css.ClubDetails}>
                             <h4>Club details</h4>
                             <ClubFullInformation/>

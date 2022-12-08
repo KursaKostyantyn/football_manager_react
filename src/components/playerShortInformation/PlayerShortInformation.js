@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {clubActions, playerActions} from "../../redux";
 
 const PlayerShortInformation = ({player, adding, noButtons, clubId, transfer, deleteFromTransfer}) => {
-    // const {clubForRender} = useSelector(state => state.clubs);
+
     const {playerForTransfer} = useSelector(state => state.players);
     const dispatch = useDispatch();
 
