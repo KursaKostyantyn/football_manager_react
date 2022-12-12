@@ -22,6 +22,7 @@ axiosService.interceptors.response.use((config) => {
 
         if (error.response?.status === 500 && error.config) {
             authService.deleteAccessToken()
+            localStorage.removeItem("userLogin")
             return history.replace('/login?ExpSession=true')
         }
         return Promise.reject(error)

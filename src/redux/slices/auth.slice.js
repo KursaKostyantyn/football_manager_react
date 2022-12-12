@@ -4,7 +4,7 @@ import {authService} from "../../services";
 
 const initialState = {
     errors: null,
-    isAuth: false
+    isAuth: false,
 }
 
 const registerUser = createAsyncThunk(
@@ -33,14 +33,40 @@ const loginUser = createAsyncThunk(
 
 const activateUser = createAsyncThunk(
     'authSlice/activateUser',
-    async ({id},{rejectedWithValue})=>{
+    async ({id}, {rejectedWithValue}) => {
         try {
-            const {data}= await authService.activate(id)
-        } catch (e){
+            const {data} = await authService.activate(id)
+            return data;
+        } catch (e) {
             return rejectedWithValue(e.response.data);
         }
     }
 );
+
+const resetPassword = createAsyncThunk(
+    'authSlice/resetPassword',
+    async ({userLogin}, {rejectedWithValue}) => {
+        try {
+            const {data} = await authService.resetPassword(userLogin)
+            return data
+        } catch (e) {
+            return rejectedWithValue(e.response.data)
+        }
+    }
+)
+
+const createNewPassword = createAsyncThunk(
+    'authSlice/createNewPassword',
+    async ({user,resetPassword},{rejectedWithValue})=>{
+        try {
+            console.log(user,"and",resetPassword)
+          const {data} = await authService.createNewPassword(user,resetPassword);
+          return data;
+        } catch (e) {
+            return rejectedWithValue(e.response.data);
+        }
+    }
+)
 
 const authSlice = createSlice({
     name: 'authSlice',
@@ -51,19 +77,32 @@ const authSlice = createSlice({
             .addCase(registerUser.fulfilled, (state, action) => {
                 state.errors = null;
             })
-            .addCase(registerUser.rejected,(state, action) => {
+            .addCase(registerUser.rejected, (state, action) => {
                 state.errors = action.payload.msg;
             })
             .addCase(loginUser.fulfilled, (state, action) => {
                 state.errors = null;
                 state.isAuth = true;
-                authService.setAccessToken({access:action.payload})
+                localStorage.setItem('userLogin', action.payload.split('//')[1])
+                authService.setAccessToken({access: action.payload.split('//')[0]})
             })
-            .addCase(activateUser.fulfilled, (state,action)=>{
-                state.errors=null;
+            .addCase(activateUser.fulfilled, (state, action) => {
+                state.errors = null;
             })
-            .addCase(activateUser.rejected,(state, action) => {
-                state.errors =action.payload
+            .addCase(activateUser.rejected, (state, action) => {
+                state.errors = action.payload
+            })
+            .addCase(resetPassword.fulfilled, (state, action) => {
+                state.errors = null;
+            })
+            .addCase(resetPassword.rejected, (state, action) => {
+                state.errors = action.payload
+            })
+            .addCase(createNewPassword.fulfilled, (state, action) => {
+                state.errors = null;
+            })
+            .addCase(createNewPassword.rejected, (state, action) => {
+                state.errors = action.payload;
             })
             .addDefaultCase((state, action) => {
                 const [type] = action.type.split('/').splice(-1);
@@ -81,7 +120,9 @@ const {reducer: authReducer} = authSlice;
 const authActions = {
     registerUser,
     loginUser,
-    activateUser
+    activateUser,
+    resetPassword,
+    createNewPassword
 }
 
 export {

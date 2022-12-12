@@ -4,3 +4,7 @@ export * from './clubsPage/index';
 export * from './transferPage/index';
 export * from './registerPage/index';
 export * from './loginPage/index';
+export * from './activatePage/index';
+export * from './resetPasswordPage/index';
+export * from './createNewPasswordPage/index';
+export * from './checkYourEmailPage/index';

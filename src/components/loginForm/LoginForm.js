@@ -1,13 +1,16 @@
 import {useDispatch} from "react-redux";
 import {useForm} from "react-hook-form";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+
 import {authActions} from "../../redux";
+import css from './LoginForm.module.css';
 
 const LoginForm = () => {
 
     const dispatch = useDispatch();
     const {register,  handleSubmit,formState:{errors}} = useForm();
     const navigate = useNavigate();
+    localStorage.removeItem("userLogin")
 
     const submit = async (data) => {
         const {error} = await dispatch(authActions.loginUser({user: data}));
@@ -31,6 +34,10 @@ const LoginForm = () => {
                 })}/>
                 <button>Login</button>
             </form>
+            <div className={css.LinkSection}>
+                <Link className={css.Link} to={"/resetPassword"}>Forgot your password?</Link>
+            </div>
+
             <div>
                 {errors.login || errors.password ? <span>The login or password you entered is incorrect.</span> : null}
             </div>

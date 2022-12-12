@@ -5,7 +5,9 @@ const urls = {
     login: '/login',
     players: '/players',
     clubs: '/clubs',
-    activate:'/activate'
+    activate:'/activate',
+    resetPassword:'/resetPassword',
+    createNewPassword:'/createNewPassword'
 }
 
 export {

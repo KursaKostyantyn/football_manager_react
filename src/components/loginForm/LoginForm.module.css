@@ -1,0 +1,8 @@
+.Link {
+    color: silver;
+}
+
+.LinkSection{
+    display: flex;
+    justify-content: flex-end;
+}

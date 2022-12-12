@@ -1,8 +1,19 @@
 import {Navigate, Route, Routes} from "react-router-dom";
 
 import {LoggedInLayout, MainLayout} from "./layouts";
-import {ClubsPage, LoginPage, NotFoundPage, PlayersPage, RegisterPage, TransferPage} from "./pages";
-import {ActivatePage} from "./pages/activatePage";
+import {
+    ClubsPage,
+    LoginPage,
+    NotFoundPage,
+    PlayersPage,
+    RegisterPage,
+    TransferPage,
+    ResetPasswordPage,
+    ActivatePage,
+    CreateNewPasswordPage, CheckYourEmailPage
+} from "./pages";
+
+
 
 const App = () => {
     return (
@@ -12,6 +23,9 @@ const App = () => {
                 <Route path={'register'} element={<RegisterPage/>}/>
                 <Route path={'login'} element={<LoginPage/>}/>
                 <Route path={'activate'} element={<ActivatePage/>}/>
+                <Route path={'resetPassword'} element={<ResetPasswordPage/>}/>
+                <Route path={'createNewPassword'} element={<CreateNewPasswordPage/>}/>
+                <Route path={'checkYourEmail'} element={<CheckYourEmailPage/>}/>
             </Route>
 
             <Route path={'/'} element={<LoggedInLayout/>}>

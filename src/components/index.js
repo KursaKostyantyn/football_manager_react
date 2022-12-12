@@ -15,3 +15,6 @@ export * from './loginForm/index';
 export * from './activate/index';
 export * from './playerPhoto/index';
 export * from './clubPhoto/index';
+export * from './resetPasswordForm/index';
+export * from './createNewPassword/index';
+export * from './checkYourEmail/index';

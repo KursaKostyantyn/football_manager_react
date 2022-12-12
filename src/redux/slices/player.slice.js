@@ -39,7 +39,7 @@ const savePlayer = createAsyncThunk(
     'playersSlice/savePlayer',
     async ({player}, {rejectedWithValue}) => {
         try {
-            const {data} = await playerService.savePlayer(player);
+            const {data} = await playerService.savePlayer(player,localStorage.getItem('userLogin'));
             return data
         } catch (e) {
             return rejectedWithValue(e.response.data())

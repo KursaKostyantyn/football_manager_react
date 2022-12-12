@@ -1,22 +1,25 @@
+import {useNavigate, useSearchParams} from "react-router-dom";
 import {useForm} from "react-hook-form";
 import {useDispatch} from "react-redux";
-import {useNavigate} from "react-router-dom";
 
 import {authActions} from "../../redux";
 
-const RegisterForm = () => {
+const CreateNewPassword = () => {
+    const [searchParams, setSearchParams] = useSearchParams();
+    const resetPassword = searchParams.get('resetPassword');
     const {register, handleSubmit, formState: {errors}} = useForm();
     const navigate = useNavigate();
     const dispatch = useDispatch();
     localStorage.removeItem("userLogin")
 
     const submit = async (data) => {
-        const {error} = await dispatch(authActions.registerUser({user: data}));
+        console.log("some happened")
+        console.log(data)
+        const {error} = await dispatch(authActions.createNewPassword({user: data,resetPassword}));
         if (!error) {
             navigate('/login')
         }
     }
-
 
     return (
         <div>
@@ -31,10 +34,7 @@ const RegisterForm = () => {
                     minLength: 4,
                     maxLength: 20
                 })}/>
-                <input type='email' placeholder={'email'} {...register('email', {
-                    required: true
-                })}/>
-                <button>Register</button>
+                <button>Create new password</button>
             </form>
             <div>
                 {errors.login && errors.login.type === "minLength" &&
@@ -47,12 +47,10 @@ const RegisterForm = () => {
                 {errors.password && errors.password.type === "required" && <span>Password can't be empty</span>}
                 {errors.password && errors.password.type === "maxLength" &&
                     <span>Password must be shorter than 20 symbols</span>}
-                {errors.email && <span>Incorrect email</span>}
+
             </div>
         </div>
-
-
     );
 };
 
-export {RegisterForm};
+export {CreateNewPassword};

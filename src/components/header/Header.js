@@ -1,11 +1,17 @@
 import {useNavigate} from "react-router-dom";
 
 import css from './Header.module.css'
+import {useEffect, useState} from "react";
 
 
 const Header = () => {
+    const [isAuth, setIsAuth] = useState(null);
     const navigate = useNavigate();
-    const isAuth = localStorage.getItem("access")
+    useEffect(()=>{
+        setIsAuth(localStorage.getItem("userLogin"))
+    },[localStorage])
+
+
 
     const register = () => {
         navigate('/register')
@@ -17,6 +23,7 @@ const Header = () => {
 
     const exit = () => {
         localStorage.removeItem("access")
+        localStorage.removeItem("userLogin")
         navigate('/login')
     }
 
