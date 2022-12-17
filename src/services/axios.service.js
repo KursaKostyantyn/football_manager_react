@@ -1,8 +1,9 @@
 import axios from "axios";
-
 import {createBrowserHistory} from "history"
+
 import {baseURL} from "../constants";
-import {authService} from "./authService";
+import {authService} from "./auth.service";
+
 
 const history = createBrowserHistory();
 
@@ -19,11 +20,9 @@ axiosService.interceptors.response.use((config) => {
         return config
     },
     (error) => {
-
-        if (error.response?.status === 500 && error.config) {
+        if ((error.response?.status === 500 || error.response?.status === 403) && error.config) {
             authService.deleteAccessToken()
-            localStorage.removeItem("userLogin")
-            return history.replace('/login?ExpSession=true')
+            return history.replace('/login')
         }
         return Promise.reject(error)
     })

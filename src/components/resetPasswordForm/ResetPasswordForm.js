@@ -8,7 +8,8 @@ const ResetPasswordForm = () => {
     const dispatch = useDispatch();
     const {register, handleSubmit, formState: {errors}} = useForm();
     const navigate = useNavigate();
-    localStorage.removeItem("userLogin")
+
+    sessionStorage.removeItem("userLogin")
 
     const submit = async (data) => {
         const {error} = await dispatch(authActions.resetPassword(data));
@@ -16,7 +17,6 @@ const ResetPasswordForm = () => {
             navigate('/checkYourEmail')
         }
     }
-
 
     return (
         <div>

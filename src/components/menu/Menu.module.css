@@ -3,6 +3,7 @@
     flex-direction: row;
     justify-content: center;
     background: blue;
+    width: 80%;
 }
 
 .Menu a {
@@ -14,4 +15,20 @@
 
 .Menu a[class='active']{
     color: black;
+}
+
+.Wrap {
+    display: flex;
+    flex-direction: row;
+}
+
+.Buttons{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 20%;
+}
+
+.PanelButton{
+    width: 100px;
 }

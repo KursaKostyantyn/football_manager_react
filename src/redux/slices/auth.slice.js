@@ -57,11 +57,11 @@ const resetPassword = createAsyncThunk(
 
 const createNewPassword = createAsyncThunk(
     'authSlice/createNewPassword',
-    async ({user,resetPassword},{rejectedWithValue})=>{
+    async ({user, resetPassword}, {rejectedWithValue}) => {
         try {
-            console.log(user,"and",resetPassword)
-          const {data} = await authService.createNewPassword(user,resetPassword);
-          return data;
+            console.log(user, "and", resetPassword)
+            const {data} = await authService.createNewPassword(user, resetPassword);
+            return data;
         } catch (e) {
             return rejectedWithValue(e.response.data);
         }
@@ -83,7 +83,7 @@ const authSlice = createSlice({
             .addCase(loginUser.fulfilled, (state, action) => {
                 state.errors = null;
                 state.isAuth = true;
-                localStorage.setItem('userLogin', action.payload.split('//')[1])
+                sessionStorage.setItem('userLogin', action.payload.split('//')[1])
                 authService.setAccessToken({access: action.payload.split('//')[0]})
             })
             .addCase(activateUser.fulfilled, (state, action) => {

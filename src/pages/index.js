@@ -8,3 +8,5 @@ export * from './activatePage/index';
 export * from './resetPasswordPage/index';
 export * from './createNewPasswordPage/index';
 export * from './checkYourEmailPage/index';
+export * from './adminPage/index';
+export * from './usersPage/index';

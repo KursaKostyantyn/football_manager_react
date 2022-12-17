@@ -17,7 +17,7 @@ const PlayersPage = () => {
                 <div>
                     <div className={css.FullInfo}>
                         <div>
-                           <PlayerPhoto/>
+                            <PlayerPhoto/>
                         </div>
                         <div>
                             <h4>Player details</h4>

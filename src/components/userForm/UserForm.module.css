@@ -1,0 +1,19 @@
+.Wrap{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.Text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+}
+
+.Form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+}

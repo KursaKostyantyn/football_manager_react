@@ -10,7 +10,7 @@ const initialState = {
     clubForRender: null,
     clubForTransferFrom: null,
     clubForTransferTo: null,
-    clubPhoto:null
+    clubPhoto: null
 }
 
 const getAllClubs = createAsyncThunk(
@@ -84,13 +84,13 @@ const playerTransfer = createAsyncThunk(
     }
 );
 
-const saveClubPhoto =createAsyncThunk(
+const saveClubPhoto = createAsyncThunk(
     'clubSlice/saveClubPhoto',
-    async (formData, {rejectedWithValue})=>{
+    async (formData, {rejectedWithValue}) => {
         try {
             const {data} = await clubService.saveClubPhoto(formData);
             return data;
-        } catch (e){
+        } catch (e) {
             return rejectedWithValue(e.response.data);
         }
     }
@@ -98,11 +98,11 @@ const saveClubPhoto =createAsyncThunk(
 
 const getClubPhoto = createAsyncThunk(
     'clubSlice/getClubPhoto',
-    async (photo,{rejectedWithValue})=>{
+    async (photo, {rejectedWithValue}) => {
         try {
             const {data} = await clubService.getClubPhoto(photo);
             return data;
-        } catch (e){
+        } catch (e) {
             return rejectedWithValue(e.response.data);
         }
     }
@@ -179,24 +179,24 @@ const clubSlice = createSlice({
             .addCase(playerTransfer.fulfilled, (state, action) => {
                 state.errors = null;
             })
-            .addCase(playerTransfer.rejected,(state, action) => {
+            .addCase(playerTransfer.rejected, (state, action) => {
                 state.errors = action.payload.msg;
             })
             .addCase(saveClubPhoto.fulfilled, (state, action) => {
                 state.errors = null;
-                const currentClub = state.clubs.find(value=>value.id===action.payload.id)
-                Object.assign(currentClub,action.payload)
+                const currentClub = state.clubs.find(value => value.id === action.payload.id)
+                Object.assign(currentClub, action.payload)
                 state.clubForRender = currentClub;
             })
-            .addCase(saveClubPhoto.rejected,(state, action) => {
+            .addCase(saveClubPhoto.rejected, (state, action) => {
                 state.errors = action.payload;
             })
             .addCase(getClubPhoto.fulfilled, (state, action) => {
-                state.errors=null;
+                state.errors = null;
                 state.clubPhoto = URL.createObjectURL(action.payload)
             })
-            .addCase(getClubPhoto.rejected,(state, action) => {
-                state.errors =action.payload
+            .addCase(getClubPhoto.rejected, (state, action) => {
+                state.errors = action.payload
             })
     }
 });

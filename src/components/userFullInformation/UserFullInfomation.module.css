@@ -1,0 +1,12 @@
+.Wrap{
+    margin-left: 5px;
+}
+
+.ClubsAndPLayersWrap{
+    display: flex;
+    flex-direction: row;
+}
+
+.Players{
+    margin-left: 5px;
+}

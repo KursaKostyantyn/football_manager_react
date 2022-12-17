@@ -1,6 +1,6 @@
 import {Navigate, Route, Routes} from "react-router-dom";
 
-import {LoggedInLayout, MainLayout} from "./layouts";
+import {AdminLayout, LoggedInLayout, MainLayout} from "./layouts";
 import {
     ClubsPage,
     LoginPage,
@@ -10,9 +10,10 @@ import {
     TransferPage,
     ResetPasswordPage,
     ActivatePage,
-    CreateNewPasswordPage, CheckYourEmailPage
+    CreateNewPasswordPage,
+    CheckYourEmailPage,
+    AdminPage
 } from "./pages";
-
 
 
 const App = () => {
@@ -32,8 +33,11 @@ const App = () => {
                 <Route path={'players'} element={<PlayersPage/>}/>
                 <Route path={'clubs'} element={<ClubsPage/>}/>
                 <Route path={'transfer'} element={<TransferPage/>}/>
+                <Route path={'admin'} element={<AdminLayout/>}>
+                    <Route index element={<Navigate to={'users'}/>}/>
+                    <Route path={'users'} element={<AdminPage/>}/>
+                </Route>
             </Route>
-
             <Route path={'*'} element={<NotFoundPage/>}/>
         </Routes>
     );

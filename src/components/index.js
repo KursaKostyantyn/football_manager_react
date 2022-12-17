@@ -18,3 +18,10 @@ export * from './clubPhoto/index';
 export * from './resetPasswordForm/index';
 export * from './createNewPassword/index';
 export * from './checkYourEmail/index';
+export * from './users/index';
+export * from './userShortInformation/index';
+export * from './userFullInformation/index';
+export * from './userForm/index';
+export * from './userPhoto/index';
+
+

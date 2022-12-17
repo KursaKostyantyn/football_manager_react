@@ -1,0 +1,30 @@
+.Image{
+    width: 200px;
+    height: 300px;
+}
+.Form {
+    display: flex;
+    flex-direction: column;
+}
+
+.PhotoSectionHeader{
+    display: flex;
+    justify-content: center;
+}
+
+.PhotoSection {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 5px;
+}
+
+.ImageSection{
+    display: flex;
+    justify-content: center;
+}
+
+
+
+
+

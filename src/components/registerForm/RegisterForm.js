@@ -2,13 +2,17 @@ import {useForm} from "react-hook-form";
 import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
 
-import {authActions} from "../../redux";
+import {authActions, userActions} from "../../redux";
 
 const RegisterForm = () => {
     const {register, handleSubmit, formState: {errors}} = useForm();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    localStorage.removeItem("userLogin")
+
+    localStorage.removeItem('access')
+    sessionStorage.removeItem("userLogin")
+
+    dispatch(userActions.setUsers([]))
 
     const submit = async (data) => {
         const {error} = await dispatch(authActions.registerUser({user: data}));

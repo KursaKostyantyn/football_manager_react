@@ -1,16 +1,19 @@
 import {useNavigate} from "react-router-dom";
-
-import css from './Header.module.css'
 import {useEffect, useState} from "react";
+import {useDispatch} from "react-redux";
+
+import {userActions} from "../../redux";
+import css from './Header.module.css'
 
 
 const Header = () => {
     const [isAuth, setIsAuth] = useState(null);
     const navigate = useNavigate();
-    useEffect(()=>{
-        setIsAuth(localStorage.getItem("userLogin"))
-    },[localStorage])
+    const dispatch = useDispatch();
 
+    useEffect(() => {
+        setIsAuth(sessionStorage.getItem("userLogin"))
+    }, [dispatch])
 
 
     const register = () => {
@@ -23,7 +26,8 @@ const Header = () => {
 
     const exit = () => {
         localStorage.removeItem("access")
-        localStorage.removeItem("userLogin")
+        sessionStorage.removeItem("userLogin")
+        dispatch(userActions.setUsers([]));
         navigate('/login')
     }
 

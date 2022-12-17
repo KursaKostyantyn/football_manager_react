@@ -1,7 +1,7 @@
 import {useDispatch, useSelector} from "react-redux";
+import {useEffect, useState} from "react";
 
 import {clubActions, playerActions} from "../../redux";
-import {useEffect, useState} from "react";
 
 const ClubShortInformation = ({club, transfer, noButtons, deleteFromTransfer}) => {
 

@@ -2,15 +2,17 @@ import {useDispatch} from "react-redux";
 import {useForm} from "react-hook-form";
 import {Link, useNavigate} from "react-router-dom";
 
-import {authActions} from "../../redux";
+import {authActions, userActions} from "../../redux";
 import css from './LoginForm.module.css';
 
 const LoginForm = () => {
 
     const dispatch = useDispatch();
-    const {register,  handleSubmit,formState:{errors}} = useForm();
+    const {register, handleSubmit, formState: {errors}} = useForm();
     const navigate = useNavigate();
-    localStorage.removeItem("userLogin")
+    localStorage.removeItem('access')
+    sessionStorage.removeItem("userLogin")
+    dispatch(userActions.setUsers([]))
 
     const submit = async (data) => {
         const {error} = await dispatch(authActions.loginUser({user: data}));

@@ -5,17 +5,17 @@ import {useDispatch} from "react-redux";
 import {authActions} from "../../redux";
 
 const CreateNewPassword = () => {
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams] = useSearchParams();
     const resetPassword = searchParams.get('resetPassword');
     const {register, handleSubmit, formState: {errors}} = useForm();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    localStorage.removeItem("userLogin")
+    sessionStorage.removeItem("userLogin")
 
     const submit = async (data) => {
         console.log("some happened")
         console.log(data)
-        const {error} = await dispatch(authActions.createNewPassword({user: data,resetPassword}));
+        const {error} = await dispatch(authActions.createNewPassword({user: data, resetPassword}));
         if (!error) {
             navigate('/login')
         }

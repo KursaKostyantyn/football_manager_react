@@ -10,8 +10,8 @@ const Players = ({adding}) => {
     const {players} = useSelector(state => state.players);
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(playerActions.getAllPlayers());
+    useEffect(async () => {
+        await dispatch(playerActions.getAllPlayers());
     }, [dispatch])
 
     return (

@@ -1,0 +1,53 @@
+.Wrap {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.UsersList {
+    width: 20%;
+    background: blanchedalmond;
+    height: 100%;
+padding-left: 5px;
+}
+
+.InfoBlock {
+    width: 80%;
+    background: lightblue;
+}
+
+.UserFormWrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: green;
+    width: 100%;
+}
+
+.NameUserForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    height: 100%;
+}
+
+.UserForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 100%;
+}
+
+.AboutPlayer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.FullInfo {
+    display: flex;
+    flex-direction: row;
+}
+
