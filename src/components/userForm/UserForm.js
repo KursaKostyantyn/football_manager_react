@@ -46,14 +46,17 @@ const UserForm = () => {
                             minLength: 3,
                             maxLength: 20
                         })}/>
+                        {errors.login && <span> login can't be empty</span>}
                     </div>
 
                     {userForUpdate ?
                         <div>
-                            <input type='text' placeholder={'password'} {...register('password')}/>
+                            <input type='password' placeholder={'updatePassword'} {...register('password', {
+                                required: false
+                            })}/>
                         </div> :
                         <div>
-                            <input type='text' placeholder={'password'} {...register('password', {
+                            <input type='password' placeholder={'password'} {...register('password', {
                                 required: true,
                                 minLength: 4,
                                 maxLength: 20
@@ -66,6 +69,7 @@ const UserForm = () => {
                         <input type='text' placeholder={'email'} {...register('email', {
                             required: true
                         })}/>
+                        {errors.email && <span> email can't be empty</span>}
                     </div>
 
                     <div>

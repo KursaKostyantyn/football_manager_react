@@ -10,6 +10,7 @@ const LoginForm = () => {
     const dispatch = useDispatch();
     const {register, handleSubmit, formState: {errors}} = useForm();
     const navigate = useNavigate();
+
     localStorage.removeItem('access')
     sessionStorage.removeItem("userLogin")
     dispatch(userActions.setUsers([]))
