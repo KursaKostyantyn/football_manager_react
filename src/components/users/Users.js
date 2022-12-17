@@ -8,8 +8,8 @@ const Users = () => {
     const {users} = useSelector(state => state.users);
     const dispatch = useDispatch();
 
-    useEffect(async () => {
-        await dispatch(userActions.getAllUsers());
+    useEffect(() => {
+        dispatch(userActions.getAllUsers());
     }, [dispatch])
 
     return (
